@@ -5,7 +5,6 @@ public:
 
         unordered_map<string, vector<string>> str_bucket;
 
-        int n = strs.size();
         for (string s : strs) {
             string key =s;
             sort(key.begin(),key.end());
@@ -13,8 +12,8 @@ public:
             str_bucket[key].push_back(s);
         }
 
-        for(auto it=str_bucket.begin(); it != str_bucket.end(); it++){
-            ans.push_back(it->second);
+        for(auto &pair : str_bucket){
+            ans.push_back(pair.second);
         }
         return ans;
     }
