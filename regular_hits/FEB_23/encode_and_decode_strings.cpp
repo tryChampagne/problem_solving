@@ -1,6 +1,10 @@
 class Solution {
 public:
-
+    void shiftString(string &s){
+        for(char &ch: s){
+            ch =(ch+1)%256;
+        }
+    }
     string encode(vector<string>& strs) {
         string encoded_input;
         
@@ -9,7 +13,7 @@ public:
 
             encoded_input +=to_string(len);
             encoded_input +=' ';
-            reverse(s.begin(),s.end());
+            shiftString(s);
             encoded_input +=s;
             encoded_input +=' ';
         }
@@ -17,6 +21,13 @@ public:
         return encoded_input;
     }
 
+    void unshiftString(string &s){
+        for(char &ch: s){
+            ch--;
+            if(ch == -1)
+                ch =255;
+        }
+    }
     string extractNthString(string &s,int &i){
         string str_len;
         while(s[i] != ' '){
@@ -33,7 +44,7 @@ public:
         }
         i++;
 
-        reverse(res.begin(),res.end());
+        unshiftString(res);
         return res;
     }
     vector<string> decode(string s) {
